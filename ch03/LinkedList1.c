@@ -52,5 +52,7 @@ int main(void) {
 	deleteLinkedList(head);
 	printf("\n");
 
+	// 동적 할당 받은 만큼 메모리 해제(free()함수 사용)하는 문장 필요함
+
 	return 0;
 }
