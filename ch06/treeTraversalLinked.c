@@ -17,15 +17,17 @@ struct node* create(char data) {
 	return p;
 }
 
-void delete(struct node* p) {
+void delete(struct node* p) {	// 노드 소멸(재귀호출로 반복)
 	if (p != NULL) {
 		delete(p->llink);
 		delete(p->rlink);
+		printf("%c  ", p->data);
+		// postOrder와 결과가 같음
 		free(p);
 	}
 }
 
-void preOrder(struct node* p) {
+void preOrder(struct node* p) {	 // 전위 운행(D -> L -> R)
 	if (p != NULL) {
 		printf("%c  ", p->data);
 		preOrder(p->llink);
@@ -33,7 +35,7 @@ void preOrder(struct node* p) {
 	}
 }
 
-void inOrder(struct node* p) {
+void inOrder(struct node* p) {	// 중위 운행(L -> D -> R)
 	if (p != NULL) {
 		inOrder(p->llink);
 		printf("%c  ", p->data);
@@ -41,7 +43,7 @@ void inOrder(struct node* p) {
 	}
 }
 
-void postOrder(struct node* p) {
+void postOrder(struct node* p) {  // 후위 운행(L -> R -> D)
 	if (p != NULL) {
 		postOrder(p->llink);
 		postOrder(p->rlink);
@@ -51,7 +53,7 @@ void postOrder(struct node* p) {
 
 int main(void) {
 	struct node* root = create('A');
-	root->llink = create('B');
+	root->llink = create('B');	
 	root->rlink = create('C');
 	root->llink->llink = create('D');
 	root->llink->rlink = create('E');
@@ -65,8 +67,10 @@ int main(void) {
 	inOrder(root); printf("\n");
 	printf("후위 운행(postOrder) : ");
 	postOrder(root); printf("\n");
+	printf("사라지는 순서        : ");
 
 	delete(root);
+	// deleteAll(root); 메모리 해제
 
 	return 0;
 }
