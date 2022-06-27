@@ -22,4 +22,6 @@ void main(void) {
 			printf("%5d", graph[i][j]);
 		printf("\n");
 	}
+
+	return 0;
 }
